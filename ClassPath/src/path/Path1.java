@@ -1,51 +1,49 @@
 package path;
 
+
 import java.nio.file.Path;
 
 public class Path1 {
-
 	public static void main(String[] args) {
-		//crea una ruta, no el archivo
-		//ruta relativa partiendo de la carpeta raiz del proyecto
-		Path ruta = Path.of("datos/archivos.txt");
+		// Crea una ruta. No el archivo
+		// Ruta relativa partiendo de la carpeta raiz del proyecto
+		Path ruta = Path.of("datos/archivo.txt");
 		
-		//devuelve el nombre del archivo al que apunta, deuelve un Path
+		// Devuelve el nombre del archivo de la ruta
 		System.out.println("Nombre: " + ruta.getFileName());
 		
-		//devuelve el directorio padre
-		System.out.println("padre " + ruta.getParent());
+		// Devuelve el nombre de la carpeta padre del archivo
+		System.out.println("Padre: " + ruta.getParent());
 		
-		//devuelve un ojeto Path con la ruta absoluta
-		System.out.println("absoluta: " + ruta.toAbsolutePath());
+		// Devuelve un objeto con la ruta absoluta
+		System.out.println("Absoluta: " + ruta.toAbsolutePath());
 		
-		//devuelve un boolean si el elemento terminal de la ruta coincide
-		System.out.println(ruta.endsWith("archivos.txt"));
+		// Devuelve un booleano si el elemento terminal de la ruta coincide
+		System.out.println(ruta.endsWith("archivo.txt")); //devolverá true pq el ultimo "bloque" es lit archivo.txt
 		
-		//sirve para pegar 2 rutas
-		Path carpeta = Path.of("datos");
-		Path archivo = carpeta.resolve("notas.txt"); // = datos/notas.txt
+		// ATENCION
+		System.out.println(ruta.endsWith("txt")); // es false pq mira los nombres
+		System.out.println(ruta.getFileName().toString().endsWith("txt")); // es true
+		//.toString convierte el Path en un String, .endsWith para ver si acaba con txt
+		//la diferencia entre las 2 esque el primero busca una carpeta o archivo y el segundo mira TODAS las letras
 		
-		//la ruta que hay que seguir para llegar a otra
-		Path rutaA = Path.of("usuarios/pepe");
-		Path rutaB = Path.of("usuarios/pepe/documentos/facturas.pdf");
+		// Contar elementos de una ruta
+		Path p = Path.of("a/b/c/d.txt");
+		for (int i = 0; i < p.getNameCount(); i++) {
+			System.out.println(p.getName(i));
+		}
 		
-		Path relativa = rutaA.relativize(rutaB);
-		System.out.println(relativa);
+		// Construir rutas nuevas a partir de una base
+		Path p2 = Path.of("usuarios");
+		System.out.println(p2.resolve("juan/info.txt"));
 		
-		//saber en que carpeta esta guardado algo sin improtar el nombre del archivo
-		Path rutaLarga = Path.of("C:/Usiarios/Proyectos/Java/Main.java");
+		// usuarios/juan/info.txt
+		// Construir rutas
+		Path p3 = Path.of("datos", "2026", "enero.txt");
 		
-		int niveles = rutaLarga.getNameCount();
-		System.out.println("la ruta tiene " + niveles + " niveles");
-		System.out.println("el archivo es " + rutaLarga.getName(niveles - 1));
-		
-		//comprueba si la cadena de texto de la ruta empieza o termina por donde le indiques
-		Path p = Path.of("datos/config/setup.exe");
-		
-		System.out.println("Es un ejecutable? " + p.endsWith("setup.exe"));
-		System.out.println("Esta en la carpeta de datos? " + p.startsWith("datos"));
-		
+		// datos/2026/enero.txt
+		String usuario = "ana";
+		System.out.println(Path.of("usuarios", usuario, "perfil.json"));
 		
 	}
-
 }
