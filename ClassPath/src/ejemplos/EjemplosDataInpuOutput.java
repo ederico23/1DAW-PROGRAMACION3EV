@@ -1,4 +1,4 @@
-package ejemplosDataInputOutput;
+package ejemplos;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
