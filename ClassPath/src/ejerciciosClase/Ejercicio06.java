@@ -1,5 +1,13 @@
 package ejerciciosClase;
 
+/**
+ * Ejercicio 6.- si existe el archivo configuracion.txt crear un archivo de copia de seguridad
+ * configuracion_backup.txt
+ * 
+ *  @author Eder Gracia
+ *  @version 1.0
+ */
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

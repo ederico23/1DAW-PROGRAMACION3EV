@@ -1,5 +1,11 @@
-package ejerciciosClase;
+ package ejerciciosClase;
 
+/**
+ * Ejercicio 3.- Crea una aplicación que lea el fichero log.txt y lo escriba por consola.
+ * 
+ * @author Eder Gracia
+ * @version 1.0
+ */
 
 import java.io.IOException;
 import java.nio.file.Files;

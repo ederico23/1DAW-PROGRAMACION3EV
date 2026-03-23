@@ -1,5 +1,13 @@
 package ejerciciosClase;
 
+/**
+ * Ejercicio 5.- Imprimirá el nombre del archivo y su contenido de todos los archivos de texto que se
+ * encuentren dentro del árbol de directorios de la carpeta del proyecto.
+ * 
+ *  @author Eder Gracia
+ *  @version 1.0
+ */
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

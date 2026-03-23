@@ -19,7 +19,7 @@ public class Ejemplo04 {
 			dos.writeLong(10000000L);  //escribe 8 bytes
 			dos.writeFloat(9.18f); //escribe 4 bytes
 			dos.writeChar('Z'); //escribe 2 bytes
-			dos.writeUTF("Hola"); //escribe llongitud
+			dos.writeUTF("Hola"); //escribe longitud
 			
 			System.out.println("datos primitivos guardados");
 		} catch (IOException e) {

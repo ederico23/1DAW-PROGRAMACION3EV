@@ -1,5 +1,11 @@
 package ejerciciosClase;
-
+/**
+ * Ejercicio 1.- Crea una aplicación que pida una frase por teclado y la añada a un archivo frases.txt 
+ * que se encuentre en la ruta “/documentos/frases.txt” partiendo de la raíz de tu proyecto
+ * 
+ * @author Eder Gracia 
+ * @version 1.0 
+ */
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

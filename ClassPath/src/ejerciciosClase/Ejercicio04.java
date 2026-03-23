@@ -1,5 +1,15 @@
 package ejerciciosClase;
 
+/**
+ * Ejercicio 4.- Crea una aplicación que permita realizar las opciones sobre un archivo diario.txt
+ * Opción 1.- Añadir nota: El texto introducido por consola se añadirá al fichero. Al darle al
+ * pulsar Enter volvera al menú y añadira una nueva línea al fichero.
+ * Opcion 2.- Mostrar diario. Imprimirá el diario por consola. 
+ * 
+ * @author Eder Gracia
+ * @version 1.0
+ */
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
