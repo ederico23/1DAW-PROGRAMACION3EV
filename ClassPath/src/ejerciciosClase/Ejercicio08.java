@@ -1,6 +1,6 @@
 package ejerciciosClase;
 
-<<<<<<< HEAD
+
 /**
  * Ejercicio 8.- Utilizando InputStream y OutputStream generaun progrmama que realice la siguiente
  * tarea:
@@ -15,7 +15,7 @@ package ejerciciosClase;
  * @author Eder Gracia
  * @version 1.0
  */
-=======
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
@@ -23,7 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
->>>>>>> eefb427f2c2377f6a38582a661b5fa072ad54368
+
 public class Ejercicio08 {
 
 	public static void main(String[] args) {
