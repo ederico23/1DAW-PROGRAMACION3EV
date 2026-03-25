@@ -1,11 +1,28 @@
 package ejerciciosAvanzadosFicheros;
 
-
+/**
+ * Ejercicio 3 — Limpieza de fichero
+ * Enunciado
+ * Dado un fichero con líneas repetidas:
+ * hola
+ * adios
+ * hola
+ * hola
+ * adios
+ * 	Haz un programa que:
+ * 		1. Elimine duplicados
+ * 		2. Mantenga el orden original
+ * 		3. Sobrescriba el fichero
+ * 			Nivel extra
+ * 				● Ignorar mayúsculas/minúsculas
+ */
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Ejercicio03 {
 	
@@ -25,6 +42,14 @@ public class Ejercicio03 {
 			
 			//para las lineas que son unicas
 			List<String> lineasDespues = new ArrayList<>();
+			//Set<String> lineasDespues2 = new HashSet<String>();
+			
+			//recorrer otras vez las lineas
+			//for (String lA:lineasAntes) {
+				
+			//	lineasDespues2.add(lA);
+			//}
+			//System.out.println(lineasDespues2);
 			
 			//recorrer todas las lineas
 			for(String lA : lineasAntes) {
@@ -50,7 +75,7 @@ public class Ejercicio03 {
 			} //fin for lA
 			
 			Files.write(ej03, lineasDespues);
-			System.out.println("Fichero limpieado");
+			System.out.println("Fichero limpiado");
 			
 		} catch (IOException e) {
 			
