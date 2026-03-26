@@ -26,32 +26,20 @@ public class Ejercicio04 {
 
 	public static void main(String[] args) {
 		
+		//VARIABLES
 		Path ej04 = Path.of("ejerciciosAvanzados/ejercicio04.txt");
+		int contadorLineas = 0;
+		int contadorDeLineas = 1;
+		int contadorPalabras = 0;
+		
+		
 		
 		if(!Files.exists(ej04)) {
 			System.out.println("Archivo no encotrado");
 			return;
 		}
 		
-		try (BufferedReader br = Files.newBufferedReader(ej04,StandardCharsets.UTF_8)){
-			//LEER EL ARCHIVO
-			String linea;
-			while ((linea = br.readLine()) != null) {
-				System.out.println(linea);
-				System.out.println(Arrays.toString(linea.split("[ ,.;]")));
-			}
-			
-			//PREGUNTAR PALABRA
-			String palabra = Leer.leerFrase("\n¿Que palabra quieres buscar?");
-			
-			
-			
 		
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}//fin trycatch 
 
 		
 		
