@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
+import java.util.List;
 
 import ejerciciosClase.Leer;
 
@@ -31,64 +32,66 @@ public class Ejercicio04 {
 		int contadorLineas = 0;
 		int contadorDeLineas = 1;
 		int contadorPalabras = 0;
-
-
-
+		int contadorTotal = 0;
+		String palabraBuscar;
+		List<String> lineas;
+		
+		//TIENE QUE ESTAR CREADO
 		if(!Files.exists(ej04)) {
 			System.out.println("Archivo no encotrado");
 			return;
-		}
-
-
-
-		//PREGUNTAR PALABRA
-		String palabra = Leer.leerFrase("\n¿Que palabra quieres buscar?").toLowerCase();
-
-		try (BufferedReader br = Files.newBufferedReader(ej04,StandardCharsets.UTF_8)){
-
-			int numLinea = 1;
-			int aparicioneS = 0;
-
-			//LEER EL ARCHIVO
-			String linea;
-			while ((linea = br.readLine()) != null) {
-
-				//partimos la linea 
-				String[] palabrasLinea = linea.split("[ ,.;]");
-				boolean encontradaEnLinea = false;
-				int aparicionesLinea = 0;
-
-				for (String p : palabrasLinea) {
-					//ignoro mayus
-					if(p.equalsIgnoreCase(palabra)) {
-						aparicionesLinea++;
-						aparicioneS++;
-						encontradaEnLinea = true;
-					}//fin if
-
-				} //fin for
-
-				//palabra en el texto
-				if(encontradaEnLinea) {
-					System.out.println("La palabra '" + palabra +"' está en " +
-							"\nla linea " + linea + 
-							" y \nen el texto aparece un total de " 
-							+ aparicioneS + " veces");
-
-				}//fin if
-
-				numLinea++;
-			} //fin while
-
-
-
-
-
-
-
-		}
-
-
+		} //fin if
+		
+		//PROCESO
+		palabraBuscar = Leer.leerFrase("¿Que palabra quieres buscar?");
+		
+		try {
+			//LEEMOS LAS LINEAS
+			lineas = Files.readAllLines(ej04);
+			
+			//FOR PARA RECORRER TODAS LAS LINEAS
+			for( String l : lineas) {
+				
+				//CONTAMOS LAS VECES QUE APARECE LA PALABRA A TRAVES DEL METODO
+				 Integer veces = contarApariciones(l, palabraBuscar);
+				 
+				 //IMPRIMIMOS EL MENSAJE RESUMEN DE LA BUSQUEDA
+				 //el indexOf coge el numero de la linea pero empieza en 0 asique sumamos 1 para que empiece en 1
+				 System.out.println("En la linea " + (lineas.indexOf(l)+1) + " la palabra " + palabraBuscar + 
+						 " aparece un total de " + veces + " veces");
+				 contadorTotal = contadorTotal + veces;
+				
+			} //fin for
+			
+			//RESUMEN FINAL
+			System.out.println("En el archivo " + ej04.getFileName() + ", la palabra " + palabraBuscar +
+					" aparece " + contadorTotal + " veces");
+			  
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//fin trycatch
+		
+		
 	}//fin main
+
+	private static Integer contarApariciones(String l, String palabraBuscar) {
+		
+		Integer contador = 0;
+		
+		//dividimos las palabras 
+		String[] palabras = l.split("[ ,.;]");
+		
+		//recorremos las palabras y cuentolas veces que coinciden con la palabraBuscar
+		for(String p : palabras) {
+			
+			if(p.equalsIgnoreCase(palabraBuscar)) {
+				contador++;
+			} //fin if
+			
+		}//fin for
+		
+		return contador;
+	}
 
 }//fin class
