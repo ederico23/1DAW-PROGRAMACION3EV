@@ -33,16 +33,47 @@ public class Ejercicio04 {
 			return;
 		}
 		
+
+		//PREGUNTAR PALABRA
+		String palabra = Leer.leerFrase("\n¿Que palabra quieres buscar?").toLowerCase();
+		
 		try (BufferedReader br = Files.newBufferedReader(ej04,StandardCharsets.UTF_8)){
+			
+			int numLinea = 1;
+			int aparicioneS = 0;
+			
 			//LEER EL ARCHIVO
 			String linea;
 			while ((linea = br.readLine()) != null) {
-				System.out.println(linea);
-				System.out.println(Arrays.toString(linea.split("[ ,.;]")));
-			}
+				
+				//partimos la linea 
+				String[] palabrasLinea = linea.split("[ ,.;]");
+				boolean encontradaEnLinea = false;
+				int aparicionesLinea = 0;
 			
-			//PREGUNTAR PALABRA
-			String palabra = Leer.leerFrase("\n¿Que palabra quieres buscar?");
+				for (String p : palabrasLinea) {
+					//ignoro mayus
+					if(p.equalsIgnoreCase(palabra)) {
+						aparicionesLinea++;
+						aparicioneS++;
+						encontradaEnLinea = true;
+					}//fin if
+					
+				} //fin for
+				
+				//palabra en el texto
+				if(encontradaEnLinea) {
+					System.out.println("La palabra '" + palabra +"' está en " +
+							"\nla linea " + linea + 
+							" y \nen el texto aparece un total de " 
+							+ aparicioneS + " veces");
+					
+				}//fin if
+				
+				numLinea++;
+			} //fin while
+			
+			
 			
 			
 			
