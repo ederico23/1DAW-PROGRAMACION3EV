@@ -1,0 +1,5 @@
+Ana:10
+Luis:25
+Ana:15
+Eder:35
+Juan:26
