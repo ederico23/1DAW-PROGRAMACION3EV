@@ -165,6 +165,8 @@ public class Ejercicio03 extends JFrame {
 			} //fin ifelse numero correcto
 		
 		
+		
+		
 	}//fin comprobarNumero
 
 

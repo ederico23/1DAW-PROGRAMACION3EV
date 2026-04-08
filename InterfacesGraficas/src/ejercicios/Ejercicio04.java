@@ -37,12 +37,7 @@ public class Ejercicio04 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private int contadorRojo = 0;
-	private int contadorVerde = 0;
-	private int contadorAzul = 0;
-	private int contadorRosa = 0;
-	private int contadorAmarillo = 0;
-	private int contadorGris = 0;
+	private int[] contadores = new int[6];
 	
 //	/**
 //	 * Launch the application.
@@ -128,6 +123,7 @@ public class Ejercicio04 extends JFrame {
 		contentPane.add(lblRojo);
 
 		//acciones
+		//array de botones
 		JButton[] botonesPulsados = {
 			btnRojo,
 			btnVerde,
@@ -137,6 +133,7 @@ public class Ejercicio04 extends JFrame {
 			btnGris
 		};
 		
+		//array de lbls
 		JLabel[] coloresLbl = {
 			lblRojo,
 			lblVerde,
@@ -145,35 +142,15 @@ public class Ejercicio04 extends JFrame {
 			lblAmarillo,
 			lblGris
 		};
-		botonesPulsados[0].addActionListener(e-> {
-			contadorRojo++;
-			coloresLbl[0].setText("Veces pulsadas : " + contadorRojo);
-		});
 		
-		botonesPulsados[1].addActionListener(e-> {
-			contadorVerde++;
-			coloresLbl[1].setText("Veces pulsadas : " + contadorVerde);
-		});
 		
-		botonesPulsados[2].addActionListener(e-> {
-			contadorAzul++;
-			coloresLbl[2].setText("Veces pulsadas : " + contadorVerde);
-		});
-		
-		botonesPulsados[3].addActionListener(e-> {
-			contadorRosa++;
-			coloresLbl[3].setText("Veces pulsadas : " + contadorVerde);
-		});
-		
-		botonesPulsados[4].addActionListener(e-> {
-			contadorAmarillo++;
-			coloresLbl[4].setText("Veces pulsadas : " + contadorVerde);
-		});
-		
-		botonesPulsados[5].addActionListener(e-> {
-			contadorGris++;
-			coloresLbl[5].setText("Veces pulsadas : " + contadorVerde);
-		});
+		for(int i = 0; i <botonesPulsados.length; i++) {
+			int index = i;
+			botonesPulsados[i].addActionListener(e-> {
+				contadores[index]++;
+				coloresLbl[index].setText("Veces pulsadas : " + contadores[index]);
+			});
+		}//fin for
 		
 	}//fin Ejercicio04
 }//fin class
