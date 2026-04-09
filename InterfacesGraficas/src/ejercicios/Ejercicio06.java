@@ -92,8 +92,6 @@ public class Ejercicio06 extends JFrame {
 
 		//Acciones
 
-		
-
 		btnCelsius.addActionListener(e->{
 			try {
 				double f = Double.parseDouble(txtFare.getText());
@@ -102,7 +100,7 @@ public class Ejercicio06 extends JFrame {
 				lblError.setText("");
 				txtFare.setText("");
 			}catch (NumberFormatException ex) {
-				lblError.setText("Error, introduce un numero valido en Farenheit");
+				lblError.setText("Error, introduce un numero valido");
 			}//fin catch
 		});//fin ActionListenerCelsius
 
@@ -115,7 +113,7 @@ public class Ejercicio06 extends JFrame {
 			lblError.setText("");
 			txtCelsius.setText("");
 			} catch (NumberFormatException ex){
-				lblError.setText("Error, introduce un numero valido en Celsius");
+				lblError.setText("Error, introduce un numero valido");
 			}//fin trycatch
 		});//fin ActionListenerFare
 
