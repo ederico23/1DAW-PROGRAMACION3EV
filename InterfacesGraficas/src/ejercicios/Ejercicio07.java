@@ -14,6 +14,7 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -30,41 +31,42 @@ public class Ejercicio07 extends JFrame {
 	 */
 	public Ejercicio07() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 397, 334);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
 
 		//variables
 		JLabel lblCelsius = new JLabel("Celsius");
-		lblCelsius.setBounds(38, 50, 76, 17);
+		lblCelsius.setBounds(10, 14, 49, 20);
 		contentPane.add(lblCelsius);
 
 		JLabel lblFare = new JLabel("Farenheit");
-		lblFare.setBounds(38, 113, 96, 17);
+		lblFare.setBounds(10, 101, 65, 20);
 		contentPane.add(lblFare);
 
 		JLabel lblError = new JLabel("");
-		lblError.setBounds(38, 238, 339, 14);
+		lblError.setBounds(134, 24, 0, 0);
 		contentPane.add(lblError);
 
 		txtCelsius = new JTextField();
-		txtCelsius.setBounds(256, 48, 96, 20);
+		txtCelsius.setBounds(201, 11, 146, 26);
 		contentPane.add(txtCelsius);
 		txtCelsius.setColumns(10);
 
 		txtFare = new JTextField();
 		txtFare.setColumns(10);
-		txtFare.setBounds(256, 111, 96, 20);
+		txtFare.setBounds(201, 98, 146, 26);
 		contentPane.add(txtFare);
 
 		JButton btnCelsius = new JButton("CELSIUS");
-		btnCelsius.setBounds(23, 185, 88, 22);
+		btnCelsius.setBounds(15, 223, 95, 29);
 		contentPane.add(btnCelsius);
 
 		JButton btnFare = new JButton("FARENHEIT");
-		btnFare.setBounds(256, 185, 96, 22);
+		btnFare.setBounds(214, 223, 117, 29);
 		contentPane.add(btnFare);
 
 
@@ -72,8 +74,10 @@ public class Ejercicio07 extends JFrame {
 
 		btnCelsius.addActionListener(e->{
 			try {
+				camposVacios(lblCelsius);
 				double f = Double.parseDouble(txtFare.getText());
 				double resultado = aCelsius(f);
+				confirmacionACelsius();
 				txtCelsius.setText("" + resultado);
 				lblError.setText("");
 				txtFare.setText("");
@@ -85,8 +89,10 @@ public class Ejercicio07 extends JFrame {
 		
 		btnFare.addActionListener(e->{
 			try {
+			camposVacios(lblFare);
 			double c = Double.parseDouble(txtCelsius.getText());
 			double resultado = aFarenheit(c);
+			confirmacionAFarenheit();
 			txtFare.setText(String.format("" + resultado));
 			lblError.setText("");
 			txtCelsius.setText("");
@@ -105,6 +111,20 @@ public class Ejercicio07 extends JFrame {
 	private double aCelsius(Double fare) {
 		return (fare - 32)/1.8;	
 	}//fin aCelsius
+
+	private void confirmacionACelsius() {
+		JOptionPane.showMessageDialog(this, "Vas a convertir de grados Farenheit a Celsius");
+	}//fin confirmacionACeslsius
 	
+	private void confirmacionAFarenheit() {
+		JOptionPane.showMessageDialog(this, "Vas a convertir de grados Celsius a Farenheit");
 	
+	}//fin confirmacionAFarenheit
+	
+	private void camposVacios(JLabel campos) {
+		
+		if(campos.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Por favor, rellene uno de los dos campos");			
+		}
+	}//fin camposVacios
 }//fin class
