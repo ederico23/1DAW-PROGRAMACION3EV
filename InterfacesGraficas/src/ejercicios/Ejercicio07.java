@@ -39,11 +39,11 @@ public class Ejercicio07 extends JFrame {
 
 
 		//variables
-		JLabel lblCelsius = new JLabel("Celsius");
+		JLabel lblCelsius = new JLabel("A Celsius");
 		lblCelsius.setBounds(10, 14, 49, 20);
 		contentPane.add(lblCelsius);
 
-		JLabel lblFare = new JLabel("Farenheit");
+		JLabel lblFare = new JLabel("A Farenheit");
 		lblFare.setBounds(10, 101, 65, 20);
 		contentPane.add(lblFare);
 
@@ -74,9 +74,9 @@ public class Ejercicio07 extends JFrame {
 
 		btnCelsius.addActionListener(e->{
 			try {
-				camposVacios(lblCelsius);
+				camposVacios(txtFare);
 				double f = Double.parseDouble(txtFare.getText());
-				double resultado = aCelsius(f);
+				double resultado = aCelsius(f, txtFare);
 				confirmacionACelsius();
 				txtCelsius.setText("" + resultado);
 				lblError.setText("");
@@ -89,7 +89,7 @@ public class Ejercicio07 extends JFrame {
 		
 		btnFare.addActionListener(e->{
 			try {
-			camposVacios(lblFare);
+			camposVacios(txtCelsius);
 			double c = Double.parseDouble(txtCelsius.getText());
 			double resultado = aFarenheit(c);
 			confirmacionAFarenheit();
@@ -104,12 +104,24 @@ public class Ejercicio07 extends JFrame {
 	}//fin Ejercicio06()
 
 	private double aFarenheit(Double celsius) {
-		return (celsius * 1.8) + 32;
+		double aFare = (celsius * 1.8) + 32;
+		return aFare;
 	}//fin aFarenheit
 
 
-	private double aCelsius(Double fare) {
-		return (fare - 32)/1.8;	
+	private double aCelsius(Double fare, JTextField faren) {
+		double aCelsius = 0;
+		try {
+			aCelsius +=(fare - 32)/1.8;
+			
+		} catch (NumberFormatException e) {
+			JOptionPane.showConfirmDialog(
+					this,
+					"Introduce un numero valido, por favor", 
+					"Error", 
+					JOptionPane.WARNING_MESSAGE);
+		}//fin tryCatch
+		return aCelsius;	
 	}//fin aCelsius
 
 	private void confirmacionACelsius() {
@@ -121,7 +133,7 @@ public class Ejercicio07 extends JFrame {
 	
 	}//fin confirmacionAFarenheit
 	
-	private void camposVacios(JLabel campos) {
+	private void camposVacios(JTextField campos) {
 		
 		if(campos.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Por favor, rellene uno de los dos campos");			
