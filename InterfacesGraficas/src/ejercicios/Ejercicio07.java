@@ -74,58 +74,129 @@ public class Ejercicio07 extends JFrame {
 		//Acciones
 
 		btnFare.addActionListener(e -> {
-		    try {
-		    	confirmacionAFarenheit();
-		        double c = Double.parseDouble(txtCelsius.getText());
-		        txtFare.setText(String.format("%.2f", aFarenheit(c)));
-		       
-		    } catch (NumberFormatException ex) {
-		        lanzarErrorNumero(); 
-		    }
+			try {
+				int opcion = JOptionPane.showConfirmDialog(
+						this, 
+						"¿Quieres convertir de grados Celsius a Farenheit?",
+						"Confrmacion", 
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.WARNING_MESSAGE);
+				if (opcion == 0) {
+
+					double c = Double.parseDouble(txtCelsius.getText());
+					txtFare.setText(String.format("%.2f", aFarenheit(c)));
+				} else if(opcion == 1) {
+					int opcion2 =JOptionPane.showConfirmDialog(
+							null,
+							"¿ESTAS TOTALMENTE SEGURO?", 
+							"2ª Confirmacion", 
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.WARNING_MESSAGE);
+					if(opcion2 == 0) {
+						JOptionPane.showMessageDialog(null, "vale. ADIOS");
+					} else {
+						int opcion3 = JOptionPane.showConfirmDialog(
+								this, 
+								"¿Quieres convertir de grados Celsius a Farenheit?",
+								"3ª Confrmacion", 
+								JOptionPane.YES_NO_CANCEL_OPTION,
+								JOptionPane.WARNING_MESSAGE);
+						if(opcion3 == 0) {
+							double c = Double.parseDouble(txtCelsius.getText());
+							txtFare.setText(String.format("%.2f", aFarenheit(c)));
+						} if (opcion3 == 1){
+							JOptionPane.showConfirmDialog(null, "ADIOS");					
+						}
+					}//fin if anidado1
+
+				}//fin if principal
+			} catch (NumberFormatException ex) {
+				lanzarErrorNumero(); 
+			}
 		});//fin ActionListenerCelsius
 
-		
+
 		btnCelsius.addActionListener(e -> {
-		    try {
-		    	confirmacionACelsius();	 
-		        double f = Double.parseDouble(txtFare.getText());
-		        txtCelsius.setText(String.format("%.2f", aCelsius(f)));
-		               
-		    } catch (NumberFormatException ex) {
-		        lanzarErrorNumero();
-		    }
+			try {
+				int opcion = JOptionPane.showConfirmDialog(
+						this, 
+						"¿Quieres convertir de grados Farenheit a Celsius?",
+						"Confrmacion", 
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.WARNING_MESSAGE);
+				if (opcion == 0) {
+					double f = Double.parseDouble(txtFare.getText());
+					txtCelsius.setText(String.format("%.2f", aCelsius(f)));
+				} else if(opcion == 1) {
+					int opcion2 =JOptionPane.showConfirmDialog(
+							null,
+							"¿ESTAS TOTALMENTE SEGURO?", 
+							"2ª Confirmacion", 
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.WARNING_MESSAGE);
+					if(opcion2 == 0) {
+						JOptionPane.showMessageDialog(null, "vale. ADIOS");
+					} else {
+						int opcion3 = JOptionPane.showConfirmDialog(
+								this, 
+								"Vas a convertir de grados Farenheit a Celsius",
+								"3ª Confrmacion", 
+								JOptionPane.YES_NO_CANCEL_OPTION,
+								JOptionPane.WARNING_MESSAGE);
+						if(opcion3 == 0) {
+							double f = Double.parseDouble(txtFare.getText());
+							txtCelsius.setText(String.format("%.2f", aCelsius(f)));
+						} else if (opcion3 == 1) {
+							JOptionPane.showConfirmDialog(null, "ADIOS");
+						}
+					}//fin if anidado1
+
+				}//fin confirmacion
+
+			} catch (NumberFormatException ex) {
+				lanzarErrorNumero();
+			}//fin try catch
 		});//fin ActionListenerFare
 
 	}//fin Ejercicio06()
 
 	private double aFarenheit(double c) {
 		return (c * 1.8) + 32; 
-		}
+	}
 	private double aCelsius(double f) {
 		return (f - 32) / 1.8; 
-		}
-	
+	}
+
 	private void lanzarErrorNumero() {
-	    JOptionPane.showMessageDialog(this,
-	    		"Introduce un número válido", 
-	    		"Error", 
-	    		JOptionPane.ERROR_MESSAGE);
-	    lblError.setText("Error: Caracteres no válidos");
+		JOptionPane.showMessageDialog(this,
+				"Introduce un número válido", 
+				"Error", 
+				JOptionPane.ERROR_MESSAGE);
+		lblError.setText("Error: Caracteres no válidos");
 	}
 
 	private void confirmacionACelsius() {
-		JOptionPane.showMessageDialog(this, "Vas a convertir de grados Farenheit a Celsius");
+		//JOptionPane.showMessageDialog(this, "Vas a convertir de grados Farenheit a Celsius");
+		int opcion = JOptionPane.showConfirmDialog(
+				this, 
+				"Vas a convertir de grados Farenheit a Celsius",
+				"Confrmacion", 
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.WARNING_MESSAGE);
+		if (opcion == 0) {
+
+		}//fin if opcion
 	}//fin confirmacionACeslsius
-	
+
 	private void confirmacionAFarenheit() {
 		JOptionPane.showMessageDialog(this, "Vas a convertir de grados Celsius a Farenheit");
-	
+
 	}//fin confirmacionAFarenheit
-	
-//	private void camposVacios(JTextField campos) {
-//		
-//		if(campos.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(this, "Por favor, rellene uno de los dos campos");			
-//		}
-//	}//fin camposVacios
+
+	//	private void camposVacios(JTextField campos) {
+	//		
+	//		if(campos.getText().isEmpty()) {
+	//			JOptionPane.showMessageDialog(this, "Por favor, rellene uno de los dos campos");			
+	//		}
+	//	}//fin camposVacios
 }//fin class
