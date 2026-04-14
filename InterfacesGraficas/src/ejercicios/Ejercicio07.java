@@ -25,13 +25,14 @@ public class Ejercicio07 extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtCelsius;
 	private JTextField txtFare;
+	private JLabel lblError;
 
 	/**
 	 * Create the frame.
 	 */
 	public Ejercicio07() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 397, 334);
+		setBounds(100, 100, 576, 447);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,7 +49,7 @@ public class Ejercicio07 extends JFrame {
 		contentPane.add(lblFare);
 
 		JLabel lblError = new JLabel("");
-		lblError.setBounds(134, 24, 0, 0);
+		lblError.setBounds(69, 298, 227, 61);
 		contentPane.add(lblError);
 
 		txtCelsius = new JTextField();
@@ -72,57 +73,45 @@ public class Ejercicio07 extends JFrame {
 
 		//Acciones
 
-		btnCelsius.addActionListener(e->{
-			try {
-				camposVacios(txtFare);
-				double f = Double.parseDouble(txtFare.getText());
-				double resultado = aCelsius(f, txtFare);
-				confirmacionACelsius();
-				txtCelsius.setText("" + resultado);
-				lblError.setText("");
-				txtFare.setText("");
-			}catch (NumberFormatException ex) {
-				lblError.setText("Error, introduce un numero valido");
-			}//fin catch
+		btnFare.addActionListener(e -> {
+		    try {
+		    	confirmacionAFarenheit();
+		        double c = Double.parseDouble(txtCelsius.getText());
+		        txtFare.setText(String.format("%.2f", aFarenheit(c)));
+		       
+		    } catch (NumberFormatException ex) {
+		        lanzarErrorNumero(); 
+		    }
 		});//fin ActionListenerCelsius
 
 		
-		btnFare.addActionListener(e->{
-			try {
-			camposVacios(txtCelsius);
-			double c = Double.parseDouble(txtCelsius.getText());
-			double resultado = aFarenheit(c);
-			confirmacionAFarenheit();
-			txtFare.setText(String.format("" + resultado));
-			lblError.setText("");
-			txtCelsius.setText("");
-			} catch (NumberFormatException ex){
-				lblError.setText("Error, introduce un numero valido");
-			}//fin trycatch
+		btnCelsius.addActionListener(e -> {
+		    try {
+		    	confirmacionACelsius();	 
+		        double f = Double.parseDouble(txtFare.getText());
+		        txtCelsius.setText(String.format("%.2f", aCelsius(f)));
+		               
+		    } catch (NumberFormatException ex) {
+		        lanzarErrorNumero();
+		    }
 		});//fin ActionListenerFare
 
 	}//fin Ejercicio06()
 
-	private double aFarenheit(Double celsius) {
-		double aFare = (celsius * 1.8) + 32;
-		return aFare;
-	}//fin aFarenheit
-
-
-	private double aCelsius(Double fare, JTextField faren) {
-		double aCelsius = 0;
-		try {
-			aCelsius +=(fare - 32)/1.8;
-			
-		} catch (NumberFormatException e) {
-			JOptionPane.showConfirmDialog(
-					this,
-					"Introduce un numero valido, por favor", 
-					"Error", 
-					JOptionPane.WARNING_MESSAGE);
-		}//fin tryCatch
-		return aCelsius;	
-	}//fin aCelsius
+	private double aFarenheit(double c) {
+		return (c * 1.8) + 32; 
+		}
+	private double aCelsius(double f) {
+		return (f - 32) / 1.8; 
+		}
+	
+	private void lanzarErrorNumero() {
+	    JOptionPane.showMessageDialog(this,
+	    		"Introduce un número válido", 
+	    		"Error", 
+	    		JOptionPane.ERROR_MESSAGE);
+	    lblError.setText("Error: Caracteres no válidos");
+	}
 
 	private void confirmacionACelsius() {
 		JOptionPane.showMessageDialog(this, "Vas a convertir de grados Farenheit a Celsius");
@@ -133,10 +122,10 @@ public class Ejercicio07 extends JFrame {
 	
 	}//fin confirmacionAFarenheit
 	
-	private void camposVacios(JTextField campos) {
-		
-		if(campos.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Por favor, rellene uno de los dos campos");			
-		}
-	}//fin camposVacios
+//	private void camposVacios(JTextField campos) {
+//		
+//		if(campos.getText().isEmpty()) {
+//			JOptionPane.showMessageDialog(this, "Por favor, rellene uno de los dos campos");			
+//		}
+//	}//fin camposVacios
 }//fin class
