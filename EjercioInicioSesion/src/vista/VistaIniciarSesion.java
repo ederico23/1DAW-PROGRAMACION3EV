@@ -5,7 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.ControllerFichero;
+import controlador.ControllerInicioSesion;
+import controlador.PasswordIncorrectaException;
+import controlador.UsuarioNoEncontradoException;
+import modelo.Usuario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -77,12 +85,41 @@ public class VistaIniciarSesion extends JFrame {
 		contentPane.add(btnIniciarSesion);
 
 		//LISTENERS
-		btnIniciarSesion.addActionListener(e->{
+		btnIniciarSesion.addActionListener(e -> {
+			String nombre = txtNombre.getText();
+		    String pass = new String(fieldPassword.getPassword());
+		    
+			Usuario user = new Usuario( nombre, pass);
 			
-		});//fin btnIniciarSesion listener
+			try{
+				ControllerInicioSesion.comprobarDatos(user);
+				
+			} catch (UsuarioNoEncontradoException ex) {
+		        JOptionPane.showMessageDialog(this, "Usuario no registrado", "Error" , JOptionPane.ERROR_MESSAGE);
+		    } catch (PasswordIncorrectaException ex2) {
+		        JOptionPane.showMessageDialog(this, "Contraseña incorrecta", "Error" , JOptionPane.ERROR_MESSAGE);
+		    }
+		});
 		
 		
 		
 	}//fin constructor
 
+	/**
+	 * @return the txtNombre
+	 */
+	public String getTxtNombre() {
+		return txtNombre.getText();
+	}
+
+	/**
+	 * @return the fieldPassword
+	 */
+	public String getFieldPassword() {
+		String password = new String (fieldPassword.getPassword());
+		return password;
+	}
+
+	
+	
 }//fin class

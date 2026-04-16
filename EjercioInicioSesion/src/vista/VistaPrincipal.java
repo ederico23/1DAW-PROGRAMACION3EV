@@ -57,11 +57,11 @@ public class VistaPrincipal extends JFrame {
 
 		//LISTENERS
 		btnLogIn.addActionListener(e->{
-			ControllerVistaPrincipal.iniciarSesion();
+			ControllerVistaPrincipal.iniciarSesion(this);
 		});//fin btnLogIn listener;
 		
 		btnSignUp.addActionListener(e->{
-			ControllerVistaPrincipal.registrarse();
+			ControllerVistaPrincipal.registrarse(this);
 		});//fin btnSignUp listener
 		
 		

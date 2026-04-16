@@ -9,7 +9,7 @@ public class Usuario {
 	 * @param contraseña
 	 * @param nombre
 	 */
-	public Usuario(String contraseña, String nombre) {
+	public Usuario(String nombre, String contraseña) {
 		super();
 		this.contraseña = contraseña;
 		this.nombre = nombre;
@@ -42,6 +42,7 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	
 		
 }//FIN CLASS
