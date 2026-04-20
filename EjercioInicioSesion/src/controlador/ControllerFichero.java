@@ -21,7 +21,7 @@ public class ControllerFichero {
 			lineas = Files.readAllLines(path);
 			
 			for(String l : lineas) {
-				separadas = l.split("[ :]");
+				separadas = l.split("[:]");
 			}//fin for
 					
 		} catch (IOException e) {
@@ -66,7 +66,7 @@ public class ControllerFichero {
 		}//fin if vacio o no valido
 		
 		for(String l : lineas) {
-			String[] partes = l.split("[ :]");
+			String[] partes = l.split("[:]");
 			if(partes[0].trim().equalsIgnoreCase(nombreABuscar.trim())) {
 				return true; //ya existe
 			}//fin if
@@ -82,7 +82,7 @@ public class ControllerFichero {
 		}
 		
 		for (String l : lineas) {
-			String[] separadas = l.split("[ : ]");
+			String[] separadas = l.split("[:]");
 			String nombreBueno = separadas[0].trim();
 			String passwordBuena = separadas[1].trim();
 			
