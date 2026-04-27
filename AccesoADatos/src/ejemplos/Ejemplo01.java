@@ -105,13 +105,20 @@ public class Ejemplo01 {
 		} catch (Exception ex) {
 			ex.getMessage();
 		}//fin trycatch
-		
-		
+				
 		
 	}//fin actualizarUsuario()
 	
 	public static void eliminarUsuario(int id) {
+		String sql = "DELETE FROM USUARIOS WHERE ID=?";
 		
+		try (Connection conex = DriverManager.getConnection(url);
+			PreparedStatement pstmt = conex.prepareStatement(sql)){
+				pstmt.setInt(1, id);
+				pstmt.executeUpdate();
+		} catch (Exception ex) {
+			ex.getMessage();
+		}//fin try catch
 	}//fin eliminarUsuario
 	
 	
