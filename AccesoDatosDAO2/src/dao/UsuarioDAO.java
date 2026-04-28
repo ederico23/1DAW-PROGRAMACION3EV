@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 import modelo.Usuario;
 
 public class UsuarioDAO {
@@ -36,10 +38,37 @@ public class UsuarioDAO {
 						rs.getInt("id"),
 						rs.getString("nombre"),
 						rs.getInt("edad")));
-			}
+			}//fin while
 			
 			return lista;
 			
 		}//fin try
 	}//fin listar()
+	
+	public void actualizar(Usuario u) throws Exception {
+		String sql = "UPDATE USUARIOS SET NOMBRE=?, EDAD=? WHERE ID=?";
+		
+		try (Connection conex = Database.getConnection();
+				PreparedStatement pstmt = conex.prepareStatement(sql)){
+			
+			pstmt.setString(1, u.getNombre());
+			pstmt.setInt(2, u.getEdad());
+			pstmt.setInt(3, u.getId());
+			pstmt.executeUpdate();
+		
+		}//fin try
+	}//fin actualizar()
+	
+	public void eliminar(Usuario u) throws Exception{
+		String sql = "DELETE FROM USUARIO WHERE ID =?";
+		
+		try (Connection conex = Database.getConnection();
+				PreparedStatement pstmt = conex.prepareStatement(sql)){
+		
+			pstmt.setInt(1, u.getId());
+			pstmt.executeUpdate();
+		}//fin try
+		
+	}
+	
 }//fin class
