@@ -1,4 +1,4 @@
-package modelo;
+package modeloTabla;
 
 public class Usuario {
 
