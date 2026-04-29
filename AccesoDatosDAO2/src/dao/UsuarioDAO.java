@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.xml.crypto.Data;
 
-import modeloTabla.Usuario;
+import modelo.Usuario;
 
 public class UsuarioDAO {
 
