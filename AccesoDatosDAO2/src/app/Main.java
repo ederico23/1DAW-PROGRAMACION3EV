@@ -8,10 +8,10 @@ import vista.Vista;
 public class Main {
 	
 	public static void main(String[] args) {
-		PanelListado pl = new PanelListado();
+		Vista v = new Vista();
+		v.setVisible(true);
+		PanelListado pl = v.getPanelListado();  //tenia varios PanelListado creados. aqui volvia a crear uno que estaba vacio
 		UsuarioDAO dao = new UsuarioDAO();
-		//Vista v = 
 		UsuarioController c = new UsuarioController(pl, dao);
-		
 	}
 }

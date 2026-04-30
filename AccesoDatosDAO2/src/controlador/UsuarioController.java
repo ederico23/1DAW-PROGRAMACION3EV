@@ -32,7 +32,7 @@ public class UsuarioController {
 		}
 		//AÑADIR
 		pl.setListenerAdd(e->{
-
+			
 		});	
 
 		//EDITAR

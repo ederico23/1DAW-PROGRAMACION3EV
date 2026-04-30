@@ -22,8 +22,8 @@ public class Vista extends JFrame {
 	private CardLayout cardLayout = new CardLayout();
 
 	//paneles
-	private JPanel panelListado = new PanelListado();
-	private JPanel panelBorrar = new PanelBorrar();
+	private PanelListado panelListado = new PanelListado();
+	private JPanel panelBorrar = new PanelFormulario();
 	private JPanel panelEditar = new PanelEditar();
 
 	
@@ -34,7 +34,7 @@ public class Vista extends JFrame {
 
 		//para que tenga un tamaño la ventana y se cierre
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 765, 505);
 
 		//iniciar cardLayout y contenedor
 //		cardLayout = new CardLayout();
@@ -62,6 +62,10 @@ public class Vista extends JFrame {
 	public void mostrarEditar() {
 		cardLayout.show(contentPane, "editar");
 	}//fin mostrarEditar()
+
+	public PanelListado getPanelListado() {
+		return panelListado;
+	}//fin getPanelListado
 
 }//fin class
 
