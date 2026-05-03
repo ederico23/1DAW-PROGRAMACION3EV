@@ -4,22 +4,24 @@ import java.util.List;
 import vista.Vista;
 import dao.UsuarioDAO;
 import modelo.Usuario;
+import vista.PanelEditar;
 import vista.PanelFormulario;
 import vista.PanelListado;
 
 public class UsuarioController {
 
-	private PanelListado pl = new PanelListado();;
-	private UsuarioDAO dao = new UsuarioDAO();
-	private Vista v = new Vista();
+	private PanelListado pl;
+	private UsuarioDAO dao;
+	private Vista v;
 	
 	/**
 	 * @param pl
 	 * @param dao
 	 */
-	public UsuarioController(PanelListado pl, UsuarioDAO dao) {
+	public UsuarioController(PanelListado pl, UsuarioDAO dao, Vista v) {
 		this.pl = pl;
 		this.dao = dao;
+		this.v = v;
 		iniciar();
 	}
 
@@ -31,7 +33,8 @@ public class UsuarioController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}//fin trycatch
+		
 		//AÑADIR
 		pl.setListenerAdd(e->{
 			v.mostrarAdd();
@@ -39,29 +42,16 @@ public class UsuarioController {
 
 		//EDITAR
 		pl.setListenerMod(e->{
-
+			v.mostrarEditar();
 		});
 
 		//BORRAR
 		pl.setListenerDel(e->{
-
+			
 		});
 
 	}//fin iniciar()
 
-
-	public void añadir(Usuario u) {
-
-	}//fin añadir()
-
-	public void editar(Usuario u) {
-
-	}//fin editar()
-
-
-	public void eliminar(int id) {
-
-	}//fin eliminar()
 
 
 

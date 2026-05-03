@@ -9,41 +9,47 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class PanelEditar extends JPanel{
-	public PanelEditar() {
-	}
 	
 	private JTextField txtNombre;
 	private JTextField txtEdad;
 	private JButton btnActualizar;
+	private JButton btnVolver;
 	
-	public void PanelEditrar() {
+	public PanelEditar() {
 		setLayout(null);
-
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombre.setBounds(94, 84, 68, 30);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(96, 109, 48, 14);
 		add(lblNombre);
-
+		
 		JLabel lblEdad = new JLabel("Edad");
-		lblEdad.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEdad.setBounds(94, 146, 68, 30);
+		lblEdad.setBounds(96, 171, 48, 14);
 		add(lblEdad);
-
+		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(186, 148, 90, 24);
+		txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNombre.setBounds(189, 106, 119, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
-
+		
 		txtEdad = new JTextField();
+		txtEdad.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEdad.setColumns(10);
-		txtEdad.setBounds(186, 92, 90, 24);
+		txtEdad.setBounds(189, 168, 119, 20);
 		add(txtEdad);
-
-		btnActualizar = new JButton("Guardar");
-		btnActualizar.setBounds(188, 212, 88, 22);
+		
+		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(197, 221, 111, 22);
 		add(btnActualizar);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setBounds(56, 221, 88, 22);
+		add(btnVolver);
+		
+		
 	}//fin constructor
-
+	
+	
 	public String getNombre() {
 		return txtNombre.getText();
 	}//fin getNombre()
@@ -55,6 +61,9 @@ public class PanelEditar extends JPanel{
 	public void setActionListenerActualizar(ActionListener l) {
 		btnActualizar.addActionListener(l);
 	}//fin setActionListenerActualizar()
-
-
+	
+	public void setACtionListenerVolver(ActionListener l) {
+		btnVolver.addActionListener(l);
+	}//fin setActionListenerVolver()
+	
 }//fin class

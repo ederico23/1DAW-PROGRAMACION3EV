@@ -71,7 +71,7 @@ public class PanelListado extends JPanel{
 		public void setListenerDel (ActionListener l) {
 			btnBorrar.addActionListener(l);
 		}//fin setListenerDel
-	
+		
 		public void getFilaSeleccionada() {
 			tabla.getSelectedRow();
 		}//fin getFilaSeleccionada
@@ -97,5 +97,7 @@ public class PanelListado extends JPanel{
 		}//fin mostrarUsuarios()
 		
 		
-		
+		public void getIdSeleccionado() {
+			
+		}
 }//fin class
