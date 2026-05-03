@@ -100,4 +100,9 @@ public class PanelListado extends JPanel{
 		public void getIdSeleccionado() {
 			
 		}
+		
+		public void vaciarTabla() {
+			modeloTabla.setRowCount(0);
+		} //fin vaciarTabla
+		
 }//fin class

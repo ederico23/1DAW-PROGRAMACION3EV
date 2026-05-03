@@ -67,5 +67,32 @@ public class Vista extends JFrame {
 		return panelListado;
 	}//fin getPanelListado
 
+	/**
+	 * @return the panelFormulario
+	 */
+	public PanelFormulario getPanelFormulario() {
+		return panelFormulario;
+	}
+
+	/**
+	 * @param panelFormulario the panelFormulario to set
+	 */
+	public void setPanelFormulario(PanelFormulario panelFormulario) {
+		this.panelFormulario = panelFormulario;
+	}
+
+	/**
+	 * @return the panelEditar
+	 */
+	public PanelEditar getPanelEditar() {
+		return panelEditar;
+	}
+
+	/**
+	 * @param panelEditar the panelEditar to set
+	 */
+	public void setPanelEditar(PanelEditar panelEditar) {
+		this.panelEditar = panelEditar;
+	}
 }//fin class
 
