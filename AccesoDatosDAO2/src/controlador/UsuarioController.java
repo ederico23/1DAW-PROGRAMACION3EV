@@ -37,12 +37,12 @@ public class UsuarioController {
 		
 		//AÑADIR
 		pl.setListenerAdd(e->{
-			v.mostrarAdd();
+			v.mostrarAdd(); //mostramos el PanelFormulario
 		});	
 
 		//EDITAR
 		pl.setListenerMod(e->{
-			v.mostrarEditar();
+			v.mostrarEditar(); //mostramos el PanelEditar
 		});
 
 		//BORRAR
@@ -52,7 +52,16 @@ public class UsuarioController {
 
 	}//fin iniciar()
 
-
+	//PANELFORMULARIO
+	public void guardar() {
+		PanelFormulario pf = new PanelFormulario();
+		pf.setActionListenerGuardar(e->{
+			String nombre = pf.getNombre();
+			String edad = pf.getEdad();
+			
+			new Usuario(nombre, edad);
+		});
+	}
 
 
 }//fin class
