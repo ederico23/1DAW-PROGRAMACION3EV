@@ -5,9 +5,15 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
 public class PanelFormulario extends JPanel {
 	private JTextField txtNombre;
 	private JTextField txtEdad;
+	private JButton btnGuardar;
+	
 	public PanelFormulario() {
 		setLayout(null);
 		
@@ -30,5 +36,23 @@ public class PanelFormulario extends JPanel {
 		txtEdad.setColumns(10);
 		txtEdad.setBounds(186, 92, 90, 24);
 		add(txtEdad);
-	}
+		
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(188, 212, 88, 22);
+		add(btnGuardar);
+	}//fin constructor
+	
+	public String getNombre() {
+		return txtNombre.getText();
+	}//fin getNombre()
+	
+	public String getEdad() {
+		return txtEdad.getText();
+	}//fin getEdad()
+	
+	public void setActionListenerGuardar(ActionListener l) {
+		btnGuardar.addActionListener(l);
+	}//fin setActionListenerGuardar()
+	
+	
 }//fin class

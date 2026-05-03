@@ -96,4 +96,6 @@ public class PanelListado extends JPanel{
 			
 		}//fin mostrarUsuarios()
 		
+		
+		
 }//fin class

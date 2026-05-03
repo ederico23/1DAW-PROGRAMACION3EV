@@ -23,8 +23,8 @@ public class Vista extends JFrame {
 
 	//paneles
 	private PanelListado panelListado = new PanelListado();
-	private JPanel panelBorrar = new PanelFormulario();
-	private JPanel panelEditar = new PanelEditar();
+	private PanelFormulario panelFormulario = new PanelFormulario();
+	private PanelEditar panelEditar = new PanelEditar();
 
 	
 	/**
@@ -43,7 +43,7 @@ public class Vista extends JFrame {
 
 		//añadir paneles
 		contentPane.add(panelListado, "listado");
-		contentPane.add(panelBorrar, "borrar");
+		contentPane.add(panelFormulario, "formulario");
 		contentPane.add(panelEditar, "editar");
 		
 		cardLayout.show(contentPane, "listado");
@@ -56,7 +56,7 @@ public class Vista extends JFrame {
 	}//fin mostrarListado()
 
 	public void mostrarAdd() {
-		cardLayout.show(contentPane, "borrar");
+		cardLayout.show(contentPane, "formulario");
 	}//fin mostrarAdd()
 
 	public void mostrarEditar() {

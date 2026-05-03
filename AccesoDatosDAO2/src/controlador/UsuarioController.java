@@ -1,16 +1,18 @@
 package controlador;
 
 import java.util.List;
-
+import vista.Vista;
 import dao.UsuarioDAO;
 import modelo.Usuario;
+import vista.PanelFormulario;
 import vista.PanelListado;
 
 public class UsuarioController {
 
 	private PanelListado pl = new PanelListado();;
 	private UsuarioDAO dao = new UsuarioDAO();
-
+	private Vista v = new Vista();
+	
 	/**
 	 * @param pl
 	 * @param dao
@@ -32,7 +34,7 @@ public class UsuarioController {
 		}
 		//AÑADIR
 		pl.setListenerAdd(e->{
-			
+			v.mostrarAdd();
 		});	
 
 		//EDITAR
