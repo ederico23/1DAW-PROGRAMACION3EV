@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class PanelFormulario extends JPanel {
-	private JTextField txtNombre;
 	private JTextField txtEdad;
+	private JTextField txtNombre;
 	private JButton btnGuardar;
 	private JButton btnVolver;
 
@@ -28,15 +28,15 @@ public class PanelFormulario extends JPanel {
 		lblEdad.setBounds(94, 146, 68, 30);
 		add(lblEdad);
 
-		txtNombre = new JTextField();
-		txtNombre.setBounds(186, 148, 90, 24);
-		add(txtNombre);
-		txtNombre.setColumns(10);
-
 		txtEdad = new JTextField();
-		txtEdad.setColumns(10);
-		txtEdad.setBounds(186, 92, 90, 24);
+		txtEdad.setBounds(186, 148, 90, 24);
 		add(txtEdad);
+		txtEdad.setColumns(10);
+
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(186, 92, 90, 24);
+		add(txtNombre);
 
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(188, 212, 88, 22);
