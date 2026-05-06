@@ -171,8 +171,6 @@ public class ControllerVehiculo {
 				Vehiculo vehiculo = 
 						new Vehiculo(coche[0], coche[1], coche[2], coche[3], Integer.parseInt(coche[4]));
 				//la insertamos		
-				
-				System.out.println(vehiculo.getMatricula());
 				dao.insertar(vehiculo);
 				
 			}//fin while

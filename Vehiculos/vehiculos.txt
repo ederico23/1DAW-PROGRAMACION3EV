@@ -4,3 +4,7 @@ Seat;Ibiza;Barcelona;3456JKL;90000
 Volkswagen;Golf;Valencia;4567MNP;110000
 Renault;Clio;Sevilla;5678RST;80000
 Honda;HRV;Murcia;4466FGK;77000
+Ford;Fiesta;Zaragoza;5353KJR;53333
+Opel;Astra;Zaragoza;5463PTS;55555
+Honda;Civic;Alicante;8362LMD;12345
+Hunday;Kona;Zaragoza;5237PRN;797330

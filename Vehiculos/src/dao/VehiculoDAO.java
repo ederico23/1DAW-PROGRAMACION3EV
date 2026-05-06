@@ -113,7 +113,7 @@ public class VehiculoDAO {
 	}//fin borrarVhiculo()
 
 	public void insertar(Vehiculo vh) throws Exception {
-		String sql = "INSERT INTO VEHICULOS(marca, vehiculo, provincia, matricula, km)"
+		String sql = "INSERT OR IGNORE INTO VEHICULOS(marca, vehiculo, provincia, matricula, km)" //OR IGNORE, SI EXISTE LA MATRICULA DA IGUAL
 				+ " VALUES (?,?,?,?,?)";
 		
 		try(Connection conex = Database.getConnection();
