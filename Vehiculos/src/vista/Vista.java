@@ -23,7 +23,7 @@ public class Vista extends JFrame {
 	private JPanel contentPane;
 	private DefaultTableModel modelo;
 	private JButton btnGuardar;
-	private JButton btnFiltrarKM, btnBorrar, btnVolver, btnFiltrarProv;
+	private JButton btnFiltrarKM, btnBorrar, btnVolver, btnFiltrarProv, btnLeer;
 	private JTable table;
 	
 	/**
@@ -31,7 +31,7 @@ public class Vista extends JFrame {
 	 */
 	public Vista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 604, 262);
+		setBounds(100, 100, 604, 336);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,10 +51,10 @@ public class Vista extends JFrame {
 
 		//meter en el panel la tabla
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 11, 380, 200);
+		scrollPane.setBounds(10, 11, 380, 275);
 		contentPane.add(scrollPane);
 		
-		btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar en fichero");
 		btnGuardar.setBounds(429, 144, 151, 23);
 		contentPane.add(btnGuardar);
 		
@@ -67,12 +67,16 @@ public class Vista extends JFrame {
 		contentPane.add(btnBorrar);
 		
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(429, 189, 151, 22);
+		btnVolver.setBounds(429, 245, 151, 22);
 		contentPane.add(btnVolver);
 		
 		btnFiltrarProv = new JButton("Filtrar por provincia");
 		btnFiltrarProv.setBounds(429, 50, 151, 22);
 		contentPane.add(btnFiltrarProv);
+		
+		btnLeer = new JButton("Leer fichero");
+		btnLeer.setBounds(429, 196, 151, 23);
+		contentPane.add(btnLeer);
 		
 	}//fin constructor
 
@@ -107,7 +111,12 @@ public class Vista extends JFrame {
 	
 	public void setListenerFiltrarProv(ActionListener l) {
 		btnFiltrarProv.addActionListener(l);
-	}
+	}//fin setListenerFiltrarProv()
+	
+	public void setListenerLeer(ActionListener l) {
+		btnLeer.addActionListener(l);
+	}//fin setListenerLeer()
+	
 	//MENSAJES
 	public void mostrarError(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);

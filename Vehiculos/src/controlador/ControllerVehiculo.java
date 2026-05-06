@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -60,7 +61,10 @@ public class ControllerVehiculo {
 		v.setListenerFiltrarProv(e->{
 			filtrarProvincias();
 		});//fin listenerFiltrarProv
-		
+
+		v.setListenerLeer(e->{
+			leerFichero();
+		});//fin listenerLeer
 	}//fin iniciar()
 
 	public void guardarEnFichero() {
@@ -71,7 +75,6 @@ public class ControllerVehiculo {
 			return;
 		}//fin if
 
-
 		try (BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING)){
 
 			List<Vehiculo> vehiculos = dao.listar();
@@ -79,6 +82,7 @@ public class ControllerVehiculo {
 			for (Vehiculo ve : vehiculos) {
 				bw.write(ve.getMarca() + ";" + ve.getVehiculo() + ";" + ve.getProvincia() + ";" + ve.getMatricula() + ";" + ve.getKm());
 				bw.newLine();
+				bw.flush();//vaciar el buffer y "acabar la tarea"
 			}//fin for
 
 			v.mostrarMensajes("Archivo guardado");
@@ -125,7 +129,7 @@ public class ControllerVehiculo {
 			e1.printStackTrace();
 		} //fin trycatch
 	}//fin filtrarKMS()
-	
+
 	public void filtrarProvincias() {
 		List<String> provs;
 		String[] provincias;
@@ -134,18 +138,52 @@ public class ControllerVehiculo {
 			provincias = provs.toArray(new String[0]);
 
 			String respuesta = v.mostrarProvincias(provincias);
-			
+
 			if(respuesta == null ||respuesta.isEmpty()) {
 				return;
 			}//fin if 
-			
+
 			v.limpiarTabla();
 			v.mostrarVehiculos(dao.filtrarProvincia(respuesta));			
-			
+
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			v.mostrarError("Error");
 		}//fin trycatch
 	}//fin filtrarProvincias()
-	
+
+	public void leerFichero() {
+		path = Path.of("datosNuevos.txt");
+
+		if(!Files.exists(path)) {
+			v.mostrarError("Archivo no encontrado");
+			return;
+		}//fin if
+
+		try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.UTF_8)){
+			String linea;
+			boolean salir = false;
+			while ((linea = br.readLine()) != null) {
+				//creamos array para separar los valores de la linea del fichero
+				//y coger cada valor, modelo, matricula,...
+				String[] coche = linea.split(";");
+				//creamos un vehiculo nuevo por cada linea que leamos
+				Vehiculo vehiculo = 
+						new Vehiculo(coche[0], coche[1], coche[2], coche[3], Integer.parseInt(coche[4]));
+				//la insertamos		
+				
+				System.out.println(vehiculo.getMatricula());
+				dao.insertar(vehiculo);
+				
+			}//fin while
+			v.limpiarTabla();
+			v.mostrarVehiculos(dao.listar());
+
+		} catch (Exception ex) {
+			v.mostrarError("No hay datos nuevos");
+			ex.printStackTrace();
+		}//fin trycatch
+
+	}//fin leerFichero()
+
 }//fin class

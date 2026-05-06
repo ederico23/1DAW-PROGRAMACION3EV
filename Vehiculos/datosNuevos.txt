@@ -1,0 +1,4 @@
+Ford;Fiesta;Zaragoza;5353KJR;53333
+Opel;Astra;Zaragoza;5463PTS;55555
+Honda;Civic;Alicante;8362LMD;12345
+Hunday;Kona;Zaragoza;5237PRN;797330

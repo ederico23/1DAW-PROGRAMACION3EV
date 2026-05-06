@@ -3,8 +3,4 @@ Ford;Focus;Madrid;2345FGH;120000
 Seat;Ibiza;Barcelona;3456JKL;90000
 Volkswagen;Golf;Valencia;4567MNP;110000
 Renault;Clio;Sevilla;5678RST;80000
-Peugeot;308;Bilbao;6789VWX;95000
-BMW;Serie3;Malaga;7890BCD;130000
-Audi;A4;Granada;8901FGH;140000
-Mercedes;ClaseC;Murcia;9012JKL;125000
-Hyundai;i30;Coruna;0123MNP;70000
+Honda;HRV;Murcia;4466FGK;77000

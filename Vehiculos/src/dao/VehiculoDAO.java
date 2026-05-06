@@ -112,4 +112,21 @@ public class VehiculoDAO {
 
 	}//fin borrarVhiculo()
 
+	public void insertar(Vehiculo vh) throws Exception {
+		String sql = "INSERT INTO VEHICULOS(marca, vehiculo, provincia, matricula, km)"
+				+ " VALUES (?,?,?,?,?)";
+		
+		try(Connection conex = Database.getConnection();
+				PreparedStatement pstmt = conex.prepareStatement(sql)){
+			
+			pstmt.setString(1, vh.getMarca());
+			pstmt.setString(2, vh.getVehiculo());
+			pstmt.setString(3, vh.getProvincia());
+			pstmt.setString(4, vh.getMatricula());
+			pstmt.setInt(5, vh.getKm());
+			pstmt.executeUpdate();
+			
+		}//fin try
+	}//fin insertar()
+	
 }//fin class
