@@ -13,6 +13,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import modelo.Vehiculo;
 import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 
 public class Vista extends JFrame {
 
@@ -20,13 +23,15 @@ public class Vista extends JFrame {
 	private JPanel contentPane;
 	private DefaultTableModel modelo;
 	private JButton btnGuardar;
-	private JButton btnFiltrar;
+	private JButton btnFiltrarKM, btnBorrar, btnVolver, btnFiltrarProv;
+	private JTable table;
+	
 	/**
 	 * Create the frame.
 	 */
 	public Vista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 604, 301);
+		setBounds(100, 100, 604, 262);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -42,20 +47,32 @@ public class Vista extends JFrame {
 		contentPane.setLayout(null);
 
 		//crear table segun modelo
-		JTable table = new JTable(modelo);
+		table = new JTable(modelo);
 
 		//meter en el panel la tabla
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 11, 370, 187);
+		scrollPane.setBounds(10, 11, 380, 200);
 		contentPane.add(scrollPane);
 		
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(454, 175, 126, 23);
+		btnGuardar.setBounds(429, 144, 151, 23);
 		contentPane.add(btnGuardar);
 		
-		btnFiltrar = new JButton("Filtrar por KM");
-		btnFiltrar.setBounds(454, 30, 126, 22);
-		contentPane.add(btnFiltrar);
+		btnFiltrarKM = new JButton("Filtrar por KM");
+		btnFiltrarKM.setBounds(429, 8, 151, 22);
+		contentPane.add(btnFiltrarKM);
+		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.setBounds(429, 94, 151, 23);
+		contentPane.add(btnBorrar);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setBounds(429, 189, 151, 22);
+		contentPane.add(btnVolver);
+		
+		btnFiltrarProv = new JButton("Filtrar por provincia");
+		btnFiltrarProv.setBounds(429, 50, 151, 22);
+		contentPane.add(btnFiltrarProv);
 		
 	}//fin constructor
 
@@ -77,9 +94,20 @@ public class Vista extends JFrame {
 	}//fin setActionListenerGuardar()
 	
 	public void setListenerFiltrarKm(ActionListener l) {
-		btnFiltrar.addActionListener(l);
+		btnFiltrarKM.addActionListener(l);
 	}//fin setActionListenerFiltrarKM()
 	
+	public void setListenerBorrar(ActionListener l) {
+		btnBorrar.addActionListener(l);
+	}//fin setListenerBorrar()
+
+	public void setListenerVolver(ActionListener l) {
+		btnVolver.addActionListener(l);
+	}//fin setListenerBorrar()
+	
+	public void setListenerFiltrarProv(ActionListener l) {
+		btnFiltrarProv.addActionListener(l);
+	}
 	//MENSAJES
 	public void mostrarError(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
@@ -89,8 +117,31 @@ public class Vista extends JFrame {
 		JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.INFORMATION_MESSAGE);
 	}//fin mostrarMensajes()
 	
+	public String mostrarProvincias (String[] provincias) {
+		return (String) JOptionPane.showInputDialog(
+				null, //centro pantalla 
+				"Filtrar por ciudad",
+				"Filtro",
+				JOptionPane.QUESTION_MESSAGE, 
+				null, 
+				provincias, 
+				provincias[0]);
+	}//fin mostrarProvincias
+	
+	//TABLAS
 	public void limpiarTabla() {
 		modelo.setRowCount(0);
 	}//fin limpiarTabla()
+
+	public int getFilaSeleccionada() {
+		return table.getSelectedRow();
+	}//fin getFilaSeleccionada()
 	
+	public Object getValorSeleccionado() {
+		return modelo.getValueAt(getFilaSeleccionada(), 3);
+	}//fin getValorSeleccionado()
+
+	public void borrarFila(int fila) {
+		modelo.removeRow(fila);
+	}//fin borrarFila()
 }//fin class
