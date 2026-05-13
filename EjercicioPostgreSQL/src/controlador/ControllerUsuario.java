@@ -34,12 +34,48 @@ public class ControllerUsuario {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		});//fin listenerFiltrarLetras
+		});//fin listenerFiltrarInicial
 		
-		//v.setLis
+		v.setListenerFiltrarMail(e->{
+			v.limpiarTabla();
+			try {
+				v.mostrarUsuarios(dao.filtrarEmail(v.filtrarPorMail()));
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});//fin listenerFiltrarMail
+		
+		v.setListenerBorrar(e->{
+			borrar();
+		});//fin listenerBorrar
+		
+		v.setListenerVolver(e->{
+			v.limpiarTabla();
+			try {
+				v.mostrarUsuarios(dao.listarUsuarios());
+			} catch (Exception e1) {
+				v.mostrarError("Error");
+			}
+		});//fin listenerVolver
 		
 	}//fin iniciar()
-	
+
+	public void borrar() {
+
+		if(v.getFilaSeleccionada() == -1) {
+			v.mostrarError("Selecciona una fila");
+			return;
+		}//fin if
+		
+		try {
+			dao.borrarUsuario((int) v.getValorSeleccionado());
+		} catch (Exception ex) {
+			v.mostrarError("Error");
+		}
+		
+
+	}//fin borrar()
 	
 	
 	

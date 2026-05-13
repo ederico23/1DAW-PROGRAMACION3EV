@@ -25,6 +25,7 @@ public class VehiculoDAO {
 						rs.getString("marca"),
 						rs.getString("vehiculo"),
 						rs.getString("provincia"),
+						rs.getInt("año"),
 						rs.getString("matricula"),
 						rs.getInt("km")));
 
@@ -48,12 +49,38 @@ public class VehiculoDAO {
 						rs.getString("marca"),
 						rs.getString("vehiculo"),
 						rs.getString("provincia"),
+						rs.getInt("año"),
 						rs.getString("matricula"),
 						rs.getInt("km")));
 
 			}//fin while
 
 			return listaKM;
+		}//fin try
+
+	}//fin filtrarKm()
+	
+	public List<Vehiculo> filtrarAño(int año) throws Exception {
+		String sql = "SELECT * FROM VEHICULOS WHERE año >= ?";
+		List<Vehiculo> listaAño = new ArrayList<Vehiculo>();
+
+		try (Connection conex = Database.getConnection();
+				PreparedStatement pstmt = conex.prepareStatement(sql)){
+
+			pstmt.setInt(1, año);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				listaAño.add(new Vehiculo(
+						rs.getString("marca"),
+						rs.getString("vehiculo"),
+						rs.getString("provincia"),
+						rs.getInt("año"),
+						rs.getString("matricula"),
+						rs.getInt("km")));
+
+			}//fin while
+
+			return listaAño;
 		}//fin try
 
 	}//fin filtrarKm()
@@ -72,6 +99,7 @@ public class VehiculoDAO {
 						rs.getString("marca"),
 						rs.getString("vehiculo"),
 						rs.getString("provincia"),
+						rs.getInt("año"),
 						rs.getString("matricula"),
 						rs.getInt("km")));
 
@@ -113,7 +141,7 @@ public class VehiculoDAO {
 	}//fin borrarVhiculo()
 
 	public void insertar(Vehiculo vh) throws Exception {
-		String sql = "INSERT OR IGNORE INTO VEHICULOS(marca, vehiculo, provincia, matricula, km)" //OR IGNORE, SI EXISTE LA MATRICULA DA IGUAL
+		String sql = "INSERT OR IGNORE INTO VEHICULOS(marca, vehiculo, provincia, año, matricula, km)" //OR IGNORE, SI EXISTE LA MATRICULA DA IGUAL
 				+ " VALUES (?,?,?,?,?)";
 		
 		try(Connection conex = Database.getConnection();
@@ -122,8 +150,9 @@ public class VehiculoDAO {
 			pstmt.setString(1, vh.getMarca());
 			pstmt.setString(2, vh.getVehiculo());
 			pstmt.setString(3, vh.getProvincia());
-			pstmt.setString(4, vh.getMatricula());
-			pstmt.setInt(5, vh.getKm());
+			pstmt.setInt(4, vh.getAño());
+			pstmt.setString(5, vh.getMatricula());
+			pstmt.setInt(6, vh.getKm());
 			pstmt.executeUpdate();
 			
 		}//fin try

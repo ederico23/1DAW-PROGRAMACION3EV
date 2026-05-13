@@ -1,12 +1,15 @@
 package vista;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import modelo.Usuario;
 
 public class PanelEditar extends JPanel{
 	
@@ -49,6 +52,7 @@ public class PanelEditar extends JPanel{
 		
 	}//fin constructor
 	
+
 	
 	public String getNombre() {
 		return txtNombre.getText();

@@ -95,4 +95,26 @@ public class UsuarioDAO {
 
 	}//fin filtrarLetra()
 
+	
+	public List<Usuario> filtrarEmail(String mail) throws Exception {
+		String sql = "SELECT * FROM usuarios WHERE email LIKE ?";
+		List<Usuario> lista = new ArrayList<>();
+		try (Connection conn = Database.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			
+			pstmt.setString(1,"%" + mail + "%");
+			
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while(rs.next()) {
+					lista.add(new Usuario(
+							rs.getInt("Id"),
+							rs.getString("Nombre"),
+							rs.getString("email")));
+				}//fin while
+			}//fin trycatch
+			return lista;
+		}//fin try
+
+	}//fin filtrarLetra()
+	
 }//fin class

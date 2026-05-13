@@ -23,7 +23,7 @@ public class Vista extends JFrame {
 	private JPanel contentPane;
 	private DefaultTableModel modelo;
 	private JButton btnGuardar;
-	private JButton btnFiltrarKM, btnBorrar, btnVolver, btnFiltrarProv, btnLeer;
+	private JButton btnFiltrarKM, btnBorrar, btnVolver, btnFiltrarProv, btnLeer, btnFiltrarAño;
 	private JTable table;
 	
 	/**
@@ -31,7 +31,7 @@ public class Vista extends JFrame {
 	 */
 	public Vista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 604, 336);
+		setBounds(100, 100, 604, 362);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -42,6 +42,7 @@ public class Vista extends JFrame {
 		modelo.addColumn("marca");
 		modelo.addColumn("vehiculo");
 		modelo.addColumn("provincia");
+		modelo.addColumn("año");
 		modelo.addColumn("matricula");
 		modelo.addColumn("km");
 		contentPane.setLayout(null);
@@ -51,32 +52,36 @@ public class Vista extends JFrame {
 
 		//meter en el panel la tabla
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 11, 380, 275);
+		scrollPane.setBounds(10, 11, 380, 301);
 		contentPane.add(scrollPane);
 		
 		btnGuardar = new JButton("Guardar en fichero");
-		btnGuardar.setBounds(429, 144, 151, 23);
+		btnGuardar.setBounds(429, 222, 151, 23);
 		contentPane.add(btnGuardar);
 		
 		btnFiltrarKM = new JButton("Filtrar por KM");
-		btnFiltrarKM.setBounds(429, 8, 151, 22);
+		btnFiltrarKM.setBounds(429, 122, 151, 22);
 		contentPane.add(btnFiltrarKM);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(429, 94, 151, 23);
+		btnBorrar.setBounds(429, 188, 151, 23);
 		contentPane.add(btnBorrar);
 		
 		btnVolver = new JButton("Volver");
-		btnVolver.setBounds(429, 245, 151, 22);
+		btnVolver.setBounds(429, 290, 151, 22);
 		contentPane.add(btnVolver);
 		
 		btnFiltrarProv = new JButton("Filtrar por provincia");
-		btnFiltrarProv.setBounds(429, 50, 151, 22);
+		btnFiltrarProv.setBounds(429, 155, 151, 22);
 		contentPane.add(btnFiltrarProv);
 		
 		btnLeer = new JButton("Leer fichero");
-		btnLeer.setBounds(429, 196, 151, 23);
+		btnLeer.setBounds(429, 256, 151, 23);
 		contentPane.add(btnLeer);
+		
+		btnFiltrarAño = new JButton("Filtrar por año");
+		btnFiltrarAño.setBounds(429, 88, 151, 23);
+		contentPane.add(btnFiltrarAño);
 		
 	}//fin constructor
 
@@ -86,6 +91,7 @@ public class Vista extends JFrame {
 					v.getMarca(),
 					v.getVehiculo(),
 					v.getProvincia(),
+					v.getAño(),
 					v.getMatricula(),
 					v.getKm()
 			});			
@@ -116,6 +122,10 @@ public class Vista extends JFrame {
 	public void setListenerLeer(ActionListener l) {
 		btnLeer.addActionListener(l);
 	}//fin setListenerLeer()
+	
+	public void setListenerFiltrarAño(ActionListener l) {
+		btnFiltrarAño.addActionListener(l);
+	}//setListenerFiltrarAño()
 	
 	//MENSAJES
 	public void mostrarError(String mensaje) {

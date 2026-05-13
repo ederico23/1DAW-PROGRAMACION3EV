@@ -5,6 +5,7 @@ public class Vehiculo {
 	private String marca;
 	private String vehiculo;
 	private String provincia;
+	private Integer año;
 	private String matricula;
 	private Integer km;
 	
@@ -15,11 +16,12 @@ public class Vehiculo {
 	 * @param matricula
 	 * @param km
 	 */
-	public Vehiculo(String marca, String vehiculo, String provincia, String matricula, 
-			Integer km) {
+	public Vehiculo(String marca, String vehiculo, String provincia, Integer año,
+			String matricula, Integer km) {
 		this.marca = marca;
 		this.vehiculo = vehiculo;
 		this.provincia = provincia;
+		this.año = año;
 		this.matricula = matricula;
 		this.km = km;
 	}//fin constructor
@@ -94,4 +96,18 @@ public class Vehiculo {
 		this.km = km;
 	}
 	
+	/**
+	 * @return the año
+	 */
+	public Integer getAño() {
+		return año;
+	}
+
+	/**
+	 * @param año the año to set
+	 */
+	public void setAño(Integer año) {
+		this.año = año;
+	}
+
 }//fin class

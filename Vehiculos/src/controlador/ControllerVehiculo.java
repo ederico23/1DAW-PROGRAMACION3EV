@@ -32,7 +32,12 @@ public class ControllerVehiculo {
 	}//fin construrctor
 
 	public void iniciar() {
-
+		try {
+			v.mostrarVehiculos(dao.listar());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//LISTENER DEL BOTON GUARDAR
 		v.setListenerGuardar(e->{
 			guardarEnFichero();
@@ -65,6 +70,10 @@ public class ControllerVehiculo {
 		v.setListenerLeer(e->{
 			leerFichero();
 		});//fin listenerLeer
+		
+		v.setListenerFiltrarAño(e->{
+			filtrarAños();
+		});//fin listenerAño
 	}//fin iniciar()
 
 	public void guardarEnFichero() {
@@ -130,6 +139,27 @@ public class ControllerVehiculo {
 		} //fin trycatch
 	}//fin filtrarKMS()
 
+	public void filtrarAños() {
+
+		String respuesta = JOptionPane.showInputDialog(v, "Filtrar por año", "Filtro" , 
+				JOptionPane.QUESTION_MESSAGE);
+
+		if(respuesta == null ||respuesta.isEmpty()) {
+			return;
+		}//fin if 
+
+		Integer año = Integer.parseInt(respuesta); 
+
+		v.limpiarTabla();
+
+		try {
+			v.mostrarVehiculos(dao.filtrarAño(año));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} //fin trycatch
+	}//fin filtrarKMS()
+	
 	public void filtrarProvincias() {
 		List<String> provs;
 		String[] provincias;
@@ -169,7 +199,7 @@ public class ControllerVehiculo {
 				String[] coche = linea.split(";");
 				//creamos un vehiculo nuevo por cada linea que leamos
 				Vehiculo vehiculo = 
-						new Vehiculo(coche[0], coche[1], coche[2], coche[3], Integer.parseInt(coche[4]));
+						new Vehiculo(coche[0], coche[1], coche[2], Integer.parseInt(coche[3]), coche[4], Integer.parseInt(coche[5]));
 				//la insertamos		
 				dao.insertar(vehiculo);
 				

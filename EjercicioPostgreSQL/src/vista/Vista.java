@@ -50,7 +50,7 @@ public class Vista extends JFrame {
 		scrollPane.setBounds(10, 11, 380, 275);
 		contentPane.add(scrollPane);
 		
-		btnFiltrarLetra = new JButton("Filtrar por nombre");
+		btnFiltrarLetra = new JButton("Filtrar por inicial");
 		btnFiltrarLetra.setBounds(429, 8, 151, 22);
 		contentPane.add(btnFiltrarLetra);
 		
@@ -66,10 +66,6 @@ public class Vista extends JFrame {
 		btnFiltrarMail.setBounds(429, 50, 151, 22);
 		contentPane.add(btnFiltrarMail);
 		
-		btnLeer = new JButton("Leer fichero");
-		btnLeer.setBounds(429, 138, 151, 23);
-		contentPane.add(btnLeer);
-
 	}//fin constructor
 	
 	public void mostrarUsuarios(List<Usuario> Usuario) {	
@@ -113,6 +109,12 @@ public class Vista extends JFrame {
 		String letra = JOptionPane.showInputDialog(this, "Escribir letra para filtrar");
 		return letra;
 	}//fin filtrarLetra
+
+	public String filtrarPorMail() {
+		String mail = JOptionPane.showInputDialog(this, "Escribir tipo de mail para filtrar");
+		return mail;
+	}//filtrarPorMail()
+	
 	//TABLAS
 	public void limpiarTabla() {
 		modelo.setRowCount(0);
@@ -123,12 +125,13 @@ public class Vista extends JFrame {
 	}//fin getFilaSeleccionada()
 	
 	public Object getValorSeleccionado() {
-		return modelo.getValueAt(getFilaSeleccionada(), 3);
+		return modelo.getValueAt(getFilaSeleccionada(), 0);//empieza por 0 las tablas como un array
 	}//fin getValorSeleccionado()
 
 	public void borrarFila(int fila) {
 		modelo.removeRow(fila);
 	}//fin borrarFila()
+
 	
 	
 }//fin class
