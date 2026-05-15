@@ -1,0 +1,4 @@
+Toyota;Corolla;Madrid;1234BDF;45000;2018
+Kia;Sportage;Madrid;3355FGH;38000;2022
+Seat;Ibiza;Zaragoza;4562RTS;140000;2020
+Ford;Fiesta;Alicante;2321GSL;220000;2010

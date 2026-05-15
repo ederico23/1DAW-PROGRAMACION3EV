@@ -49,12 +49,12 @@ public class ControllerVehiculo {
 
 		v.setListenerBorrar(e->{
 			borrar();
+			cargarProvincias();
 		});//fin listenerBorrar
 
 		v.setListenerVolver(e->{
 
 			v.limpiarTabla();
-
 			try {
 				v.mostrarVehiculos(dao.listar());
 			} catch (Exception e1) {
@@ -66,11 +66,16 @@ public class ControllerVehiculo {
 		v.setListenerFiltrarProv(e->{
 			filtrarProvincias();
 		});//fin listenerFiltrarProv
+		cargarProvincias();
+		v.setListenerComboBox(e->{
+			filtrarProvincias();
+		});
 
 		v.setListenerLeer(e->{
 			leerFichero();
+			cargarProvincias();
 		});//fin listenerLeer
-		
+
 		v.setListenerFiltrarAño(e->{
 			filtrarAños();
 		});//fin listenerAño
@@ -89,7 +94,8 @@ public class ControllerVehiculo {
 			List<Vehiculo> vehiculos = dao.listar();
 
 			for (Vehiculo ve : vehiculos) {
-				bw.write(ve.getMarca() + ";" + ve.getVehiculo() + ";" + ve.getProvincia() + ";" + ve.getMatricula() + ";" + ve.getKm());
+				bw.write(ve.getMarca() + ";" + ve.getVehiculo() + ";" + ve.getProvincia()+ ";" 
+						+ ve.getMatricula() + ";" + ve.getKm() + ";" + ve.getAño());
 				bw.newLine();
 				bw.flush();//vaciar el buffer y "acabar la tarea"
 			}//fin for
@@ -115,6 +121,7 @@ public class ControllerVehiculo {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			v.mostrarError("Error");
+			e.printStackTrace();
 		}//fin trycatch
 
 	}//fin borrar()
@@ -159,15 +166,11 @@ public class ControllerVehiculo {
 			e1.printStackTrace();
 		} //fin trycatch
 	}//fin filtrarKMS()
-	
-	public void filtrarProvincias() {
-		List<String> provs;
-		String[] provincias;
-		try {
-			provs = dao.getProvincias();
-			provincias = provs.toArray(new String[0]);
 
-			String respuesta = v.mostrarProvincias(provincias);
+	public void filtrarProvincias() {
+
+		try {
+			String respuesta = (String) v.provinciaSeleccionada();
 
 			if(respuesta == null ||respuesta.isEmpty()) {
 				return;
@@ -199,11 +202,12 @@ public class ControllerVehiculo {
 				String[] coche = linea.split(";");
 				//creamos un vehiculo nuevo por cada linea que leamos
 				Vehiculo vehiculo = 
-						new Vehiculo(coche[0], coche[1], coche[2], Integer.parseInt(coche[3]), coche[4], Integer.parseInt(coche[5]));
+						new Vehiculo(coche[0], coche[1], coche[2], coche[3], Integer.parseInt(coche[4]), Integer.parseInt(coche[5]));
 				//la insertamos		
 				dao.insertar(vehiculo);
-				
+
 			}//fin while
+			Files.writeString(path, "");
 			v.limpiarTabla();
 			v.mostrarVehiculos(dao.listar());
 
@@ -213,5 +217,18 @@ public class ControllerVehiculo {
 		}//fin trycatch
 
 	}//fin leerFichero()
+
+
+	public void cargarProvincias() {
+		String[] provincias;
+		try {
+			List<String> provs = dao.getProvincias();
+			provincias = provs.toArray(new String[0]);
+			v.cargarProvincias(provincias);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			v.mostrarError("Error");
+		}//fin trycatch
+	}//fin cargarProvincias()
 
 }//fin class

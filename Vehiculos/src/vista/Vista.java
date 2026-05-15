@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
 
 public class Vista extends JFrame {
 
@@ -25,6 +26,7 @@ public class Vista extends JFrame {
 	private JButton btnGuardar;
 	private JButton btnFiltrarKM, btnBorrar, btnVolver, btnFiltrarProv, btnLeer, btnFiltrarAño;
 	private JTable table;
+	private JComboBox comboBox;
 	
 	/**
 	 * Create the frame.
@@ -83,6 +85,10 @@ public class Vista extends JFrame {
 		btnFiltrarAño.setBounds(429, 88, 151, 23);
 		contentPane.add(btnFiltrarAño);
 		
+		comboBox = new JComboBox();
+		comboBox.setBounds(429, 55, 151, 22);
+		contentPane.add(comboBox);
+		
 	}//fin constructor
 
 	public void mostrarVehiculos(List<Vehiculo> Vehiculo) {	
@@ -99,6 +105,25 @@ public class Vista extends JFrame {
 	}//fin mostrarVehiculos()
 	
 	//LISTENERS
+	public void vaciarCombo() {
+		comboBox.removeAllItems();
+	}
+	
+	public void cargarProvincias(String[] provincias) {
+		vaciarCombo();
+		for (int i = 0; i < provincias.length; i++) {
+			comboBox.addItem(provincias[i]);
+		}
+	}//fin cargarProvincias()
+	
+	public Object provinciaSeleccionada() {
+		return comboBox.getSelectedItem();
+	}
+	
+	public void setListenerComboBox(ActionListener l) {
+		comboBox.addActionListener(l);
+	}//fin setListenerComboBox()
+	
 	public void setListenerGuardar(ActionListener l) {
 		btnGuardar.addActionListener(l);
 	}//fin setActionListenerGuardar()
@@ -157,7 +182,7 @@ public class Vista extends JFrame {
 	}//fin getFilaSeleccionada()
 	
 	public Object getValorSeleccionado() {
-		return modelo.getValueAt(getFilaSeleccionada(), 3);
+		return modelo.getValueAt(getFilaSeleccionada(), 4);
 	}//fin getValorSeleccionado()
 
 	public void borrarFila(int fila) {

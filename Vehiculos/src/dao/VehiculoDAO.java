@@ -25,9 +25,9 @@ public class VehiculoDAO {
 						rs.getString("marca"),
 						rs.getString("vehiculo"),
 						rs.getString("provincia"),
-						rs.getInt("año"),
 						rs.getString("matricula"),
-						rs.getInt("km")));
+						rs.getInt("km"),
+						rs.getInt("año")));
 
 			}//fin while
 		}//fin try
@@ -49,9 +49,9 @@ public class VehiculoDAO {
 						rs.getString("marca"),
 						rs.getString("vehiculo"),
 						rs.getString("provincia"),
-						rs.getInt("año"),
 						rs.getString("matricula"),
-						rs.getInt("km")));
+						rs.getInt("km"),
+						rs.getInt("año")));
 
 			}//fin while
 
@@ -74,9 +74,9 @@ public class VehiculoDAO {
 						rs.getString("marca"),
 						rs.getString("vehiculo"),
 						rs.getString("provincia"),
-						rs.getInt("año"),
 						rs.getString("matricula"),
-						rs.getInt("km")));
+						rs.getInt("km"),
+						rs.getInt("año")));
 
 			}//fin while
 
@@ -99,9 +99,9 @@ public class VehiculoDAO {
 						rs.getString("marca"),
 						rs.getString("vehiculo"),
 						rs.getString("provincia"),
-						rs.getInt("año"),
 						rs.getString("matricula"),
-						rs.getInt("km")));
+						rs.getInt("km"),
+						rs.getInt("año")));
 
 			}//fin while
 			return lista;
@@ -141,8 +141,8 @@ public class VehiculoDAO {
 	}//fin borrarVhiculo()
 
 	public void insertar(Vehiculo vh) throws Exception {
-		String sql = "INSERT OR IGNORE INTO VEHICULOS(marca, vehiculo, provincia, año, matricula, km)" //OR IGNORE, SI EXISTE LA MATRICULA DA IGUAL
-				+ " VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO VEHICULOS(marca, vehiculo, provincia, matricula, km, año)" //OR IGNORE, SI EXISTE LA MATRICULA DA IGUAL
+				+ " VALUES (?,?,?,?,?,?)";
 		
 		try(Connection conex = Database.getConnection();
 				PreparedStatement pstmt = conex.prepareStatement(sql)){
@@ -150,9 +150,9 @@ public class VehiculoDAO {
 			pstmt.setString(1, vh.getMarca());
 			pstmt.setString(2, vh.getVehiculo());
 			pstmt.setString(3, vh.getProvincia());
-			pstmt.setInt(4, vh.getAño());
-			pstmt.setString(5, vh.getMatricula());
-			pstmt.setInt(6, vh.getKm());
+			pstmt.setString(4, vh.getMatricula());
+			pstmt.setInt(5, vh.getKm());
+			pstmt.setInt(6, vh.getAño());
 			pstmt.executeUpdate();
 			
 		}//fin try

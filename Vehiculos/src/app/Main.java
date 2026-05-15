@@ -10,11 +10,5 @@ public class Main {
 		v.setVisible(true);
 		VehiculoDAO dao = new VehiculoDAO();
 		ControllerVehiculo c = new ControllerVehiculo(v, dao);
-		try {
-			v.mostrarVehiculos(dao.listar());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}//fin main
 }//fin class

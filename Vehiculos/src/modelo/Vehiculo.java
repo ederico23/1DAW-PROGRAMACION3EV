@@ -5,9 +5,9 @@ public class Vehiculo {
 	private String marca;
 	private String vehiculo;
 	private String provincia;
-	private Integer año;
 	private String matricula;
 	private Integer km;
+	private Integer año;
 	
 	/**
 	 * @param marca
@@ -16,14 +16,14 @@ public class Vehiculo {
 	 * @param matricula
 	 * @param km
 	 */
-	public Vehiculo(String marca, String vehiculo, String provincia, Integer año,
-			String matricula, Integer km) {
+	public Vehiculo(String marca, String vehiculo, String provincia,
+			String matricula, Integer km, Integer año) {
 		this.marca = marca;
 		this.vehiculo = vehiculo;
 		this.provincia = provincia;
-		this.año = año;
 		this.matricula = matricula;
 		this.km = km;
+		this.año = año;
 	}//fin constructor
 
 	/**

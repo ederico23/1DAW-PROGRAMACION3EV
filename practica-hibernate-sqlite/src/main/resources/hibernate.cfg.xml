@@ -1,0 +1,19 @@
+<hibernate-configuration>
+<session-factory>
+<!-- ¿Qué driver JDBC usar? -->
+<property name="hibernate.connection.driver_class">
+org.sqlite.JDBC
+</property>
+<!-- URL de la base de datos (ruta relativa al proyecto) -->
+<property name="hibernate.connection.url">
+jdbc:sqlite:estudiantes.db
+</property>
+<!-- Dialecto SQL para SQLite -->
+<property name="hibernate.dialect">
+org.hibernate.community.dialect.SQLiteDialect
+</property>
+<!-- update: crea la tabla si no existe;
+la actualiza si se añaden columnas nuevas -->
+<property name="hibernate.hbm2ddl.auto">update</property>
+</session-factory>
+</hibernate-configuration>
