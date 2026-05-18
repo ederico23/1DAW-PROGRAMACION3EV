@@ -1,0 +1,7 @@
+# Archivos generados por Maven (se pueden regenerar con mvn compile)
+/target/
+# Base de datos SQLite (se genera al ejecutar, no es código fuente)
+/estudiantes.db
+# Archivos temporales
+*.log
+.DS_Store
