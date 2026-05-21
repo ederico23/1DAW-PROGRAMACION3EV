@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,11 +24,13 @@ public class Student {
 	private String apellidos;
 	@Column(name = "edad", nullable = false)
 	private Integer edad;
-	@Column(name = "email", nullable = false, length = 150)
+	@Column(name = "email", nullable = false, length = 150, unique = true)
 	private String email;
 	@Column(name = "curso", nullable = false, length = 50)
 	private String curso;
-
+	@ManyToOne
+	@JoinColumn(name = "asignatura_id")
+	private Asignatura asignatura;
 
 	public Student() {
 	} // (6) Constructor vacío: OBLIGATORIO para Hibernate
@@ -94,10 +98,19 @@ public class Student {
 		this.curso = curso;
 	}
 	
+	public Asignatura getAsignatura() { 
+		return asignatura; 
+	}
+	
+	public void setAsignatura(Asignatura asignatura) {
+		this.asignatura = asignatura; 
+	}
+	
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad + ", email="
-				+ email + ", curso= " + curso +"]";
+	    return "Student [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + 
+	           ", edad=" + edad + ", email=" + email + ", curso= " + curso + 
+	           ", asignatura= " + asignatura + "]";
 	}
 	
 }

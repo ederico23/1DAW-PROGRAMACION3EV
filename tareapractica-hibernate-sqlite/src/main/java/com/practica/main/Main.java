@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.practica.util.Student;
+import com.practica.util.Asignatura;
 import com.practica.util.HibernateUtil;
 
 public class Main {
@@ -38,32 +39,35 @@ public class Main {
 	// se explican en la siguiente sección.
 
 	private static List<Long> crearEstudiantesEjemplo() {
-		List<Long> ids = new ArrayList<>();
-		Transaction tx = null;
-		// try-with-resources: la sesión se cierra automáticamente al salir del bloque
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			tx = session.beginTransaction(); // Iniciamos la transacción
-			// Sufijo de tiempo para emails únicos en cada ejecución
-			String sufijo = String.valueOf(System.currentTimeMillis());
-			// Creamos objetos Java normales (aún no están en la BD)
-			Student s1 = new Student("Ana", "García López", 20,  "ana.garcia." + sufijo + "@example.com" , "1DAW Vespertino");
-			Student s2 = new Student("Carlos", "Pérez Martín", 22, "carlos.perez." + sufijo + "@example.com" , "1DAM diurno");
-			Student s3 = new Student("Lucía", "Ruiz Torres", 21, "lucia.ruiz." + sufijo + "@example.com" , "1ASIR Diurno");
-			// persist() marca cada objeto para ser insertado al hacer commit
-			session.persist(s1);
-			session.persist(s2);
-			session.persist(s3);
-			ids.add(s1.getId());
-			ids.add(s2.getId());
-			ids.add(s3.getId());
+	    List<Long> ids = new ArrayList<>();
+	    Transaction tx = null;
+	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+	        tx = session.beginTransaction();
+	        String sufijo = String.valueOf(System.currentTimeMillis());
 
-			tx.commit(); // Ejecuta los INSERTs en la BD y cierra la transacción
-			// Después del commit, Hibernate ha rellenado los IDs generados por la BD
-		} catch (Exception e) {
-			rollbackSiHaceFalta(tx); // Si hay error, deshacemos todo
-			System.err.println("Error en CREATE: " + e.getMessage());
-		}
-		return ids;
+	        // 1. Crear y persistir la asignatura PRIMERO
+	        Asignatura asig = new Asignatura("Bases de Datos", 6);
+	        session.persist(asig);
+
+	        // 2. Crear estudiantes y asignarles la asignatura
+	        List<Student> estudiantes = new ArrayList<>();
+	        estudiantes.add(new Student("Ana", "García López", 20, "ana.garcia." + sufijo + "@example.com", "1DAW Vespertino"));
+	        estudiantes.add(new Student("Carlos", "Pérez Martín", 22, "carlos.perez." + sufijo + "@example.com", "1DAM diurno"));
+	        estudiantes.add(new Student("Lucía", "Ruiz Torres", 21, "lucia.ruiz." + sufijo + "@example.com", "1ASIR Diurno"));
+
+	        for (Student s : estudiantes) {
+	            s.setAsignatura(asig); //asignamos a cada estudiante
+	            validarEstudiantes(s);
+	            session.persist(s);
+	            ids.add(s.getId());
+	        }
+
+	        tx.commit();
+	    } catch (Exception e) {
+	        rollbackSiHaceFalta(tx);
+	        System.err.println("Error en CREATE: " + e.getMessage());
+	    }
+	    return ids;
 	}
 
 	private static void leerEstudiantePorId(Long id) {
@@ -161,9 +165,9 @@ public class Main {
 	    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 	        
 	        // 1. Creamos la consulta HQL buscando por el atributo "nombre"
-	        List<Student> estudiantes = session.createQuery("from Student where nombre = :nombre", Student.class)
-	                                            .setParameter("nombre", nombre)
-	                                            .list();
+	    	List<Student> estudiantes = session.createQuery("from Student where nombre like :nombre", Student.class)
+                    						.setParameter("nombre", "%" + nombre + "%")
+                    						.list();
 
 	        // 2. Comprobamos si la lista tiene resultados
 	        if (!estudiantes.isEmpty()) {
@@ -195,7 +199,7 @@ public class Main {
 	            System.out.println("Filtrado por edad correctamente:");
 	            // Recorremos la lista para mostrar los datos en consola
 	            for (Student s : estudiantes) {
-	                System.out.println("ID: " + s.getId() + " - Edad: " + s.getNombre());
+	                System.out.println("ID: " + s.getId() + " - Edad: " + s.getEdad());
 	            }
 	        } else {
 	            System.out.println("No se puede buscar: " + edad + " no encontrado.");
@@ -204,6 +208,23 @@ public class Main {
 	    } catch (Exception ex) {
 	        ex.printStackTrace();
 	    }
+	}
+	
+
+	private static void validarEstudiantes(Student s) {
+		
+		if(!s.getEmail().contains("@")) {
+			throw new IllegalArgumentException("Email no válido, falta la @");
+		} else {
+			System.out.println("Email válido");
+		}
+		
+		if(!(s.getEdad() < 0 || s.getEdad() < 120)) {
+			throw new IllegalArgumentException("Edad no válida");
+		} else {
+			System.out.println("Edad válida");
+		}
+		
 	}
 	
 }//fin main

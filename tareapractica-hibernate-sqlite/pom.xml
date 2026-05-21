@@ -31,7 +31,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.6.3</version>
                 <configuration>
-                    <mainClass>principal.Main</mainClass>  <!-- ← cambia "Main" por tu clase principal -->
+                    <mainClass>com.practica.main.Main</mainClass>  <!-- ← cambia "Main" por tu clase principal -->
                 </configuration>
             </plugin>
 

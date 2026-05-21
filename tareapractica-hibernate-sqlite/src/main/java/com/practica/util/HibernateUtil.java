@@ -15,6 +15,7 @@ public class HibernateUtil {
 			configuration.configure("hibernate.cfg.xml");
 // Registra la entidad Student para que Hibernate la conozca
 			configuration.addAnnotatedClass(Student.class);
+			configuration.addAnnotatedClass(Asignatura.class);
 
 // Construye y devuelve la SessionFactory (operación costosa)
 			return configuration.buildSessionFactory();
