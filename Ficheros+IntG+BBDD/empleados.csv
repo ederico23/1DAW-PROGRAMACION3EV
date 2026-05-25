@@ -1,0 +1,7 @@
+id,nombre,puesto,salario,activo
+1,Ana García,Developer,2200.0,ACTIVO
+2,Luis Martínez,Analista,2345.53,ACTIVO
+3,Marta López,Diseñadora,1900.0,INACTIVO
+4,Pedro Ruiz,Desarrollador,2500.0,ACTIVO
+5,Sara Sanz,Tester,2100.0,INACTIVO
+8,Eder Gracia,Front-End,2593.63,ACTIVO
