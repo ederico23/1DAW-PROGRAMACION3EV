@@ -1,0 +1,5 @@
+Ana Garcia;Informatica;1800.50
+Luis Torres;RRHH;1500.00
+Marta Ruiz;Informatica;2100.75
+Pedro Sanz;Contabilidad;1650.00
+Carmen Diaz;RRHH;1900.00
